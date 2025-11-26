@@ -1,12 +1,10 @@
 @import "tailwindcss";
 
 :root {
-  --background: #ffffff;
   --foreground: #171717;
 }
 
 @theme inline {
-  --color-background: var(--background);
   --color-foreground: var(--foreground);
   --font-sans: var(--font-geist-sans);
   --font-mono: var(--font-geist-mono);
@@ -14,13 +12,197 @@
 
 @media (prefers-color-scheme: dark) {
   :root {
-    --background: #0a0a0a;
     --foreground: #ededed;
   }
 }
 
+html {
+  background: #020617 !important;
+}
+
 body {
-  background: var(--background);
+  background: transparent !important;
   color: var(--foreground);
   font-family: Arial, Helvetica, sans-serif;
+}
+
+/* ═══════════════════════════════════════════════════════════════
+   MOOD BACKGROUND - FLOWING BLOB ANIMATIONS
+   ═══════════════════════════════════════════════════════════════ */
+
+/* Blob 1 - Moves diagonally from top-left */
+@keyframes blob1 {
+  0%, 100% {
+    transform: translate(0, 0) scale(1);
+  }
+  25% {
+    transform: translate(100px, 50px) scale(1.1);
+  }
+  50% {
+    transform: translate(150px, 100px) scale(0.95);
+  }
+  75% {
+    transform: translate(50px, 80px) scale(1.05);
+  }
+}
+
+.animate-blob1 {
+  animation: blob1 20s ease-in-out infinite;
+}
+
+/* Blob 2 - Moves in opposite pattern */
+@keyframes blob2 {
+  0%, 100% {
+    transform: translate(0, 0) scale(1);
+  }
+  25% {
+    transform: translate(-80px, 60px) scale(1.05);
+  }
+  50% {
+    transform: translate(-120px, 120px) scale(1.1);
+  }
+  75% {
+    transform: translate(-40px, 80px) scale(0.95);
+  }
+}
+
+.animate-blob2 {
+  animation: blob2 25s ease-in-out infinite;
+}
+
+/* Blob 3 - Rises and falls */
+@keyframes blob3 {
+  0%, 100% {
+    transform: translate(0, 0) scale(1);
+  }
+  33% {
+    transform: translate(50px, -80px) scale(1.1);
+  }
+  66% {
+    transform: translate(-30px, -150px) scale(0.9);
+  }
+}
+
+.animate-blob3 {
+  animation: blob3 30s ease-in-out infinite;
+}
+
+/* Slow pulse for center blob */
+@keyframes pulse-slow {
+  0%, 100% {
+    transform: translate(-50%, -50%) scale(1);
+    opacity: 0.2;
+  }
+  50% {
+    transform: translate(-50%, -50%) scale(1.15);
+    opacity: 0.35;
+  }
+}
+
+.animate-pulse-slow {
+  animation: pulse-slow 12s ease-in-out infinite;
+}
+
+/* Horizontal lines (aurora effect) */
+@keyframes line1 {
+  0% {
+    transform: translateX(-100%) scaleX(0.5);
+    opacity: 0;
+  }
+  50% {
+    transform: translateX(0%) scaleX(1);
+    opacity: 0.3;
+  }
+  100% {
+    transform: translateX(100%) scaleX(0.5);
+    opacity: 0;
+  }
+}
+
+.animate-line1 {
+  animation: line1 8s ease-in-out infinite;
+}
+
+@keyframes line2 {
+  0% {
+    transform: translateX(100%) scaleX(0.5);
+    opacity: 0;
+  }
+  50% {
+    transform: translateX(0%) scaleX(1);
+    opacity: 0.3;
+  }
+  100% {
+    transform: translateX(-100%) scaleX(0.5);
+    opacity: 0;
+  }
+}
+
+.animate-line2 {
+  animation: line2 10s ease-in-out infinite;
+  animation-delay: 2s;
+}
+
+@keyframes line3 {
+  0% {
+    transform: translateX(-100%) scaleX(0.5);
+    opacity: 0;
+  }
+  50% {
+    transform: translateX(0%) scaleX(1);
+    opacity: 0.3;
+  }
+  100% {
+    transform: translateX(100%) scaleX(0.5);
+    opacity: 0;
+  }
+}
+
+.animate-line3 {
+  animation: line3 12s ease-in-out infinite;
+  animation-delay: 4s;
+}
+
+/* ═══════════════════════════════════════════════════════════════
+   BREATHING TIMER ANIMATIONS
+   ═══════════════════════════════════════════════════════════════ */
+
+@keyframes bgPulse {
+  0%, 100% {
+    transform: scale(1);
+    opacity: 0.9;
+  }
+  50% {
+    transform: scale(1.08);
+    opacity: 1;
+  }
+}
+
+@keyframes blobFloat {
+  0% {
+    transform: translate(-50%, 40px) scale(0.9);
+    opacity: 0.4;
+  }
+  50% {
+    transform: translate(-50%, -140px) scale(1.2);
+    opacity: 0.85;
+  }
+  100% {
+    transform: translate(-50%, 40px) scale(0.9);
+    opacity: 0.4;
+  }
+}
+
+/* ═══════════════════════════════════════════════════════════════
+   UTILITY CLASSES
+   ═══════════════════════════════════════════════════════════════ */
+
+.glass {
+  background: rgba(255, 255, 255, 0.9);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+}
+
+.glow {
+  box-shadow: 0 0 40px rgba(0, 0, 0, 0.1);
 }

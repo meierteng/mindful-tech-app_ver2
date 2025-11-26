@@ -21,19 +21,20 @@ export default async function SessionPage(props) {
   }
 
   return (
-    <main className="min-h-screen bg-stone-50 p-4 md:p-8">
+    <main className="min-h-screen p-4 md:p-8">
       <div className="max-w-4xl mx-auto">
         <div className="mb-6">
           <Link 
             href="/dashboard" 
-            className="text-teal-600 hover:text-teal-700 font-medium flex items-center gap-2"
+            className="text-white/80 hover:text-white font-medium flex items-center gap-2 transition"
           >
             ← Back to Dashboard
           </Link>
         </div>
         
-        <div className="bg-white rounded-2xl shadow-xl overflow-hidden">
-          <div className="bg-teal-700 text-white p-6">
+        {/* 卡片使用半透明白色背景 */}
+        <div className="bg-white/90 backdrop-blur-md rounded-2xl shadow-2xl overflow-hidden border border-white/30">
+          <div className="bg-gradient-to-r from-teal-600 to-teal-700 text-white p-6">
             <h1 className="text-2xl md:text-3xl font-bold">{sessionData.title}</h1>
             <p className="opacity-90 mt-2 text-teal-100">
               {programId === '5-day' ? 'Standard Program' : programId === '3-day' ? 'Compact Program' : 'Intensive'}
@@ -54,4 +55,3 @@ export default async function SessionPage(props) {
     </main>
   );
 }
-

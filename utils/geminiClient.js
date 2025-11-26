@@ -53,8 +53,8 @@ export async function callGemini(prompt, history = []) {
 }
 
 async function fetchWithKey(apiKey, prompt, history) {
-  // Using gemini-2.5-pro as requested
-  const model = 'gemini-2.5-pro';
+  // Using gemini-2.0-flash - Google's latest fast model
+  const model = 'gemini-2.0-flash';
   const endpoint = `https://generativelanguage.googleapis.com/v1beta/models/${model}:generateContent?key=${apiKey}`;
   
   // Transform history to Gemini format if needed
@@ -85,6 +85,8 @@ async function fetchWithKey(apiKey, prompt, history) {
   });
 
   if (!response.ok) {
+    const errorBody = await response.text();
+    console.error(`Gemini API Error Response:`, errorBody);
     const error = new Error(`API request failed: ${response.status} ${response.statusText}`);
     error.status = response.status;
     throw error;
